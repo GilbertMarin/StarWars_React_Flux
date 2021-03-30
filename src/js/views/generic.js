@@ -52,7 +52,7 @@ export const Generic = () => {
 						</Col>
 					))
 				) : (
-					<h1>loading...</h1>
+					<h1>Cargando...</h1>
 				)}
 				<br />
 			</Row>

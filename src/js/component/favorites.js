@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Navbar, Nav, Image, DropdownButton, Dropdown } from "react-bootstrap";
 
-import "../../styles/demo.scss";
-
 export const Favorites = () => {
 	const { store, actions } = useContext(Context);
 

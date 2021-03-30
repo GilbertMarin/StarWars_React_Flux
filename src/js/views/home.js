@@ -1,19 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
-import { Container, Row, Col, Carousel, Image, Button } from "react-bootstrap";
-import { FavoritesList, Favorites } from "../component/favorites";
+import { Container, Button, Carousel, Image } from "react-bootstrap";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-	console.log("store", store);
+	//console.log("store", store);
 	return (
 		<Container>
 			<Carousel>
 				{store.home.map(([key, value], index) => {
-					console.log(key, value);
 					return (
 						<Carousel.Item key={index}>
 							{(() => {

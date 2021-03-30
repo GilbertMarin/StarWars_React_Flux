@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import { element } from "prop-types";
 import { Container, Button, Card, Row, Col, Image } from "react-bootstrap";
 
-export const getAllDetails = () => {
+export const getAllDet = () => {
 	const { store, actions } = useContext(Context);
 
 	return <h1>Hola</h1>;

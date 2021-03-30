@@ -2,38 +2,46 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { element } from "prop-types";
-import { Container, Button, Card, Row, Col, Image, Jumbotron } from "react-bootstrap";
-import { getAllDetails } from "../component/functGetDetails";
+import { Container, Button, Card, Row, Col, Image } from "react-bootstrap";
 
 export const Details = () => {
-	let { value, uid } = useParams();
+	let { value, id } = useParams();
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
-		actions.getAllDetails(value, uid);
+		actions.getAllDetails(value, id);
 	}, []);
 
 	const goBack = () => {
 		history.goBack();
 	};
-
-	console.log(store);
 	return (
 		<Container>
-			<Jumbotron>
-				<h1>Tomela con Leche</h1>
-
-				<ul>
-					{store.home.map((element, index) => {
-						return (
-							<li key={index}>
-								<span>{element} </span>
-							</li>
-						);
-					})}
-				</ul>
-			</Jumbotron>
+			<Row>
+				{store[value] && store[value][id - 1] ? (
+					<Col className="offset-md-4">
+						<br />
+						<Card style={{ width: "18rem" }}>
+							<Image
+								src="https://i.blogs.es/26ba45/star-wars-eras/450_1000.jpeg"
+								rounded
+								className="card-img-top"
+							/>
+							<Card.Body>
+								<Card.Title>
+									{value == "films"
+										? store[value][id - 1].properties.director
+										: store[value][id - 1].name}
+								</Card.Title>
+							</Card.Body>
+						</Card>
+					</Col>
+				) : (
+					<h1 style={{ color: "white" }}>You must select a value... Go Back :)</h1>
+				)}
+				<br />
+			</Row>
 			<br />
 			<Link to="/">
 				<Button variant="primary" onClick={() => goBack()}>

@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			home: [],
-			detail: [],
+			details: [],
 			baseURL: "https://www.swapi.tech/api/",
 			favorites: []
 		},
@@ -30,10 +30,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch("https://www.swapi.tech/api/", {
 					method: "GET",
-
 					headers: {
-						"Content-Type": "application/json",
-						Accept: "application/json"
+						"Content-Type": "application/json"
 					}
 				})
 					.then(resp => {
@@ -69,8 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "GET",
 
 					headers: {
-						"Content-Type": "application/json",
-						Accept: "application/json"
+						"Content-Type": "application/json"
 					}
 				})
 					.then(resp => {
@@ -88,22 +85,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getAllDetails: (value, id) => {
 				const store = getStore();
-				store.home;
 				fetch(`${store.baseURL}${value}/${id}`, {
 					method: "GET",
-
 					headers: {
-						"Content-Type": "application/json",
-						Accept: "application/json"
+						"Content-Type": "application/json"
 					}
 				})
 					.then(resp => {
-						console.log("respuesta:", resp.json());
+						//console.log("respuesta", resp.json());
 						return resp.json();
 					})
 					.then(data => {
-						setStore({ detail: data.results || data.result });
-						console.log("datos: ", store.home);
+						setStore({ details: data.results || data.result });
+						//	console.log("dataresult ", Object.keys(details));
 					})
 
 					.catch(err => {
@@ -120,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(store.favorites);
 			},
 
-			deleteFavorite: index => {
+			deleteFavorites: index => {
 				const store = getStore();
 				store.favorites.splice(index, 1);
 				setStore({ favorites: store.favorites });
